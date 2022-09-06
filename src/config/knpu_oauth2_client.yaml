@@ -1,0 +1,11 @@
+knpu_oauth2_client:
+    clients:
+        factory_oauth_client:
+            type: generic
+            provider_class: SSO\FpBundle\Provider\FactoryOauth2ClientProvider
+            client_id: '%env(OAUTH_FACTORY_PORTAL_ID)%'
+            client_secret: '%env(OAUTH_FACTORY_PORTAL_SECRET)%'
+            redirect_route: factoryportal_connect_check
+            redirect_params: { }
+            use_state: true
+        # configure your clients as described here: https://github.com/knpuniversity/oauth2-client-bundle#configuration

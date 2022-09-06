@@ -1,0 +1,16 @@
+{
+  "name": "belvg/sso-fpbundle",
+  "autoload": {
+    "psr-4": {
+      "SSO\\FpBundle\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SSO\\FpBundle\\Tests\\": "tests/"
+    }
+  },
+  "require": {
+    
+  }
+}
