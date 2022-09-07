@@ -11,6 +11,6 @@
     }
   },
   "require": {
-    
+    "knpuniversity/oauth2-client-bundle": "^2.10"
   }
 }
