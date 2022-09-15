@@ -202,7 +202,7 @@ class User implements UserInterface, EquatableInterface
         return $this;
     }
 
-    public function isEqualTo(UserInterface $user)
+    public function isEqualTo(UserInterface $user) :bool
     {
         return $this->isBlockedByFp() === false && $this->logoutUser === false;
     }
