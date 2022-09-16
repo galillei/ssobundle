@@ -8,12 +8,14 @@ declare(strict_types=1);
 
 namespace SSO\FpBundle\Controller\SSO;
 
+use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class Logout extends AbstractController
+class Logout extends AbstractController implements ContainerAwareInterface
 {
     /**
      * @var string
@@ -26,6 +28,17 @@ class Logout extends AbstractController
     public function __construct(string $factoryPortalUrl)
     {
         $this->factoryPortalUrl = $factoryPortalUrl;
+    }
+
+    /**
+     * @required
+     */
+    public function setContainer(ContainerInterface $container = null): ?ContainerInterface
+    {
+        $previous = $this->container;
+        $this->container = $container;
+
+        return $previous;
     }
 
     /**

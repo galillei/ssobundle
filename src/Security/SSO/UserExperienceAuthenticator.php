@@ -8,10 +8,10 @@ declare(strict_types=1);
 
 namespace SSO\FpBundle\Security\SSO;
 
-use App\Provider\FactoryOauth2ClientProvider;
-use App\Service\SSO\MergeUserData;
+use SSO\FpBundle\Provider\FactoryOauth2ClientProvider;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Client\OAuth2Client;
+use SSO\FpBundle\Service\MergeUserData;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -20,6 +20,7 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
+use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 
 class UserExperienceAuthenticator extends  AbstractAuthenticator
@@ -69,7 +70,7 @@ class UserExperienceAuthenticator extends  AbstractAuthenticator
         return in_array($route, ['factoryportal_connect_check', 'logout']) === false;
     }
 
-    public function authenticate(Request $request)
+    public function authenticate(Request $request) :Passport
     {
         /**
          * @var \App\Entity\User $user

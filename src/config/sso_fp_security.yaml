@@ -1,34 +1,16 @@
 security:
-    providers:
-        # used to reload user from session & other features (e.g. switch_user)
-        app_user_provider:
-            entity:
-                class: App\Entity\User
-                property: email
-    firewalls:
-        main:
-            lazy: true
-            provider: app_user_provider
-            custom_authenticators:
-                - SSO\FpBundle\Security\FactoryPortalAuthenticator
-                - SSO\FpBundle\Security\SSO\UserExperienceAuthenticator
-            logout:
-                path: app_logout
-                target: factory_portal_logout
+    # activate different ways to authenticate
+    # https://symfony.com/doc/current/security.html#the-firewall
 
-
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#the-firewall
-
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
+    # https://symfony.com/doc/current/security/impersonating_user.html
+    # switch_user: true
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/connect/factoryportal, roles: IS_AUTHENTICATED_ANONYMOUSLY}
-        - { path: ^/fp_logout, roles: IS_AUTHENTICATED_ANONYMOUSLY}
-        - { path: ^/connect/factoryportal/check, roles: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/connect/factoryportal, roles: PUBLIC_ACCESS}
+        - { path: ^/fp_logout, roles: PUBLIC_ACCESS}
+        - { path: ^/connect/factoryportal/check, roles: PUBLIC_ACCESS}
         - { path: ^/, roles: IS_AUTHENTICATED_FULLY }

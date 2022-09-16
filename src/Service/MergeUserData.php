@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace SSO\FpBundle\Service\SSO;
+namespace SSO\FpBundle\Service;
 
 use SSO\FpBundle\Entity\User;
 use SSO\FpBundle\Provider\FactoryResourceOwner;

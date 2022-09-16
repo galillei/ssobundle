@@ -20,9 +20,10 @@ class SSOFpExtension extends Extension
 
     public function load(array $configs, ContainerBuilder $container)
     {
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../config'));
-
-        $loader->load('sso_fp_service.yaml');
+//        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../config'));
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../config'));
+        $loader->load('controller.xml');
+        $loader->load('provider.xml');
     }
 
 

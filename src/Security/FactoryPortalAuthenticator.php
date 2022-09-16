@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace SSO\FpBundle\Security;
 
-use App\Provider\FactoryResourceOwner;
-use App\Service\SSO\MergeUserData;
+use SSO\FpBundle\Provider\FactoryResourceOwner;
+use SSO\FpBundle\Service\MergeUserData;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
@@ -19,6 +19,7 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
+use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
 
@@ -65,7 +66,7 @@ class FactoryPortalAuthenticator extends OAuth2Authenticator implements Authenti
         return $request->attributes->get('_route') === 'factoryportal_connect_check';
     }
 
-    public function authenticate(Request $request)
+    public function authenticate(Request $request) : Passport
     {
         $client = $this->clientRegistry->getClient('factory_oauth_client');
         $accessToken = $this->fetchAccessToken($client);

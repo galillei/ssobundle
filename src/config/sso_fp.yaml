@@ -1,0 +1,3 @@
+sso_fp:
+  resource: "@SSOFpBundle/Controller"
+  type: annotation

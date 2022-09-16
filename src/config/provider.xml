@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container
+        xmlns="http://symfony.com/schema/dic/services"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+
+        <service id="SSO\FpBundle\Controller\SSO\Logout" class="\SSO\FpBundle\Controller\SSO\Logout" public="true">
+            <argument key="$factoryPortalUrl">%env(FACTORY_PORTAL_LOGOUT)%</argument>
+        </service>
+        <service id="SSO\FpBundle\Service\MergeUserData" class="\SSO\FpBundle\Service\MergeUserData" public="true"  autoconfigure="true" autowire="true" />
+        <service id="SSO\FpBundle\Repository\UserRepository" class="\SSO\FpBundle\Repository\UserRepository" public="true" autowire="true">
+            <tag>doctrine.repository_service</tag>
+        </service>
+        <service id="SSO\FpBundle\Security\SSO\UserExperienceAuthenticator" class="\SSO\FpBundle\Security\SSO\UserExperienceAuthenticator" public="true"  autowire="true" autoconfigure="true"/>
+        <service id="SSO\FpBundle\Security\FactoryPortalAuthenticator" class="\SSO\FpBundle\Security\FactoryPortalAuthenticator" public="true" autoconfigure="true" autowire="true"/>
+    </services>
+</container>
