@@ -24,6 +24,14 @@
             logout:
                 path: app_logout
                 target: factory_portal_logout
+# add to access_controll section
+    access_control:
+      # - { path: ^/admin, roles: ROLE_ADMIN }
+      # - { path: ^/profile, roles: ROLE_USER }
+      - { path: ^/connect/factoryportal, roles: PUBLIC_ACCESS }
+      - { path: ^/fp_logout, roles: PUBLIC_ACCESS }
+      - { path: ^/connect/factoryportal/check, roles: PUBLIC_ACCESS }
+      - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
 ```
 and copy file `src/config/sso_fp_security.yaml` to `config/packages/sso_fp_security.yaml`
 
