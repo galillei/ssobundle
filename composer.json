@@ -1,6 +1,6 @@
 {
   "name": "belvg/sso-fpbundle",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "symfony-bundle",
   "description": "Integration with knpuniversity/oauth2-client-bundle to provide services",
   "keywords": ["oauth", "oauth2", "sso"],

@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace SSO\FpBundle\Controller\SSO;
 
-use App\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use SSO\FpBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
