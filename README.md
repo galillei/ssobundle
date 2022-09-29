@@ -33,7 +33,6 @@
       - { path: ^/connect/factoryportal/check, roles: PUBLIC_ACCESS }
       - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
 ```
-and copy file `src/config/sso_fp_security.yaml` to `config/packages/sso_fp_security.yaml`
 
 ### Services
 #### add to `config/service.yaml` add next lines:
@@ -53,6 +52,7 @@ and copy file `src/config/sso_fp_security.yaml` to `config/packages/sso_fp_secur
             $provider: '@app.factory.provider'
 
 ````
+
 ### Configure env
 ```Env
 OAUTH_FACTORY_PORTAL_ID='<factory_portal_id>'
