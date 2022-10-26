@@ -12,6 +12,7 @@ use SSO\FpBundle\Provider\FactoryOauth2ClientProvider;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Client\OAuth2Client;
 use SSO\FpBundle\Service\MergeUserData;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -67,7 +68,7 @@ class UserExperienceAuthenticator extends  AbstractAuthenticator
     public function supports(Request $request): ?bool
     {
         $route = $request->attributes->get('_route');
-        return in_array($route, ['factoryportal_connect_check', 'logout']) === false;
+        return in_array($route, ['factoryportal_connect_start','factoryportal_connect_check', 'logout']) === false;
     }
 
     public function authenticate(Request $request) :Passport
@@ -116,6 +117,9 @@ class UserExperienceAuthenticator extends  AbstractAuthenticator
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
-        return null;
+        return new RedirectResponse(
+            '/connect/factoryportal/',
+            Response::HTTP_TEMPORARY_REDIRECT
+        );
     }
 }
