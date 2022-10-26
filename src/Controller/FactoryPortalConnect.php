@@ -22,7 +22,7 @@ class FactoryPortalConnect extends AbstractController
 {
     /**
      * @return void
-     * @Route("/connect/factoryportal", name="factoryportal_connect_start")
+     * @Route("/connect/factoryportal/", name="factoryportal_connect_start")
      */
     public function connectAction(ClientRegistry $clientRegistry)
     {
