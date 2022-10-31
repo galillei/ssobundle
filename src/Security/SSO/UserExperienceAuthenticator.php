@@ -68,7 +68,11 @@ class UserExperienceAuthenticator extends  AbstractAuthenticator
     public function supports(Request $request): ?bool
     {
         $route = $request->attributes->get('_route');
-        return in_array($route, ['factoryportal_connect_start','factoryportal_connect_check', 'logout']) === false;
+        return in_array($route, ['factoryportal_connect_start',
+                                 'factoryportal_connect_check',
+                                 'app_logout',
+                                'logout',
+                                'factory_portal_logout']) === false;
     }
 
     public function authenticate(Request $request) :Passport
@@ -100,6 +104,7 @@ class UserExperienceAuthenticator extends  AbstractAuthenticator
                 $user = $this->mergeUserData->merge($client->fetchUser(), $accessToken);
             }catch (\Exception $exception){
                 $user->setToLogoutUser(true);
+                throw new AuthenticationException('User not set');
             }
         }
         return new SelfValidatingPassport(
