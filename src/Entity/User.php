@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -212,4 +213,5 @@ class User implements UserInterface, EquatableInterface
         $this->logoutUser = $logout;
         return $this;
     }
+
 }

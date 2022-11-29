@@ -14,5 +14,6 @@
         </service>
         <service id="SSO\FpBundle\Security\SSO\UserExperienceAuthenticator" class="\SSO\FpBundle\Security\SSO\UserExperienceAuthenticator" public="true"  autowire="true" autoconfigure="true"/>
         <service id="SSO\FpBundle\Security\FactoryPortalAuthenticator" class="\SSO\FpBundle\Security\FactoryPortalAuthenticator" public="true" autoconfigure="true" autowire="true"/>
+        <service id="SSO\FpBundle\Provider\FactoryPortalUserProvider" class="\SSO\FpBundle\Provider\FactoryPortalUserProvider" public="true" autoconfigure="true" autowire="true"/>
     </services>
 </container>

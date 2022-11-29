@@ -11,16 +11,13 @@
     providers:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
-            entity:
-                class: SSO\FpBundle\Entity\User
-                property: email
+            id: SSO\FpBundle\Provider\FactoryPortalUserProvider 
     firewalls:
         main:
             lazy: true
             provider: app_user_provider
             custom_authenticators:
                 - SSO\FpBundle\Security\FactoryPortalAuthenticator
-                - SSO\FpBundle\Security\SSO\UserExperienceAuthenticator
             logout:
                 path: app_logout
                 target: factory_portal_logout
