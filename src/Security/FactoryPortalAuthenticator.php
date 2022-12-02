@@ -10,6 +10,7 @@ namespace SSO\FpBundle\Security;
 
 use SSO\FpBundle\Provider\FactoryResourceOwner;
 use SSO\FpBundle\Service\MergeUserData;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use KnpU\OAuth2ClientBundle\Security\Authenticator\OAuth2Authenticator;
@@ -55,6 +56,9 @@ class FactoryPortalAuthenticator extends OAuth2Authenticator implements Authenti
 
     public function start(Request $request, AuthenticationException $authException = null)
     {
+        if($request->isMethod('POST')){
+            return new JsonResponse(['url'=>'/connect/factoryportal/','isRedirect'=>true]);
+        }
         return new RedirectResponse(
             '/connect/factoryportal/',
             Response::HTTP_TEMPORARY_REDIRECT
