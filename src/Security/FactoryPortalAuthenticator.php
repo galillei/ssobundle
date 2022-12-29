@@ -56,8 +56,8 @@ class FactoryPortalAuthenticator extends OAuth2Authenticator implements Authenti
 
     public function start(Request $request, AuthenticationException $authException = null)
     {
-        if($request->isMethod('POST')){
-            return new JsonResponse(['url'=>'/connect/factoryportal/','isRedirect'=>true]);
+        if($request->isMethod('POST') || $this->isApiCall($request)){
+            return new JsonResponse(['url'=>'/connect/factoryportal/','isRedirect'=>true], Response::HTTP_UNAUTHORIZED);
         }
         return new RedirectResponse(
             '/connect/factoryportal/',
@@ -75,14 +75,14 @@ class FactoryPortalAuthenticator extends OAuth2Authenticator implements Authenti
         $client = $this->clientRegistry->getClient('factory_oauth_client');
         $accessToken = $this->fetchAccessToken($client);
         return new SelfValidatingPassport(
-         new UserBadge($accessToken->getToken(), function () use ($accessToken, $client) {
-             /**
-              * @var FactoryResourceOwner $factoryUser
-              */
-             $factoryUser = $client->fetchUserFromToken($accessToken);
-             $user = $this->mergeUserData->merge($factoryUser, $accessToken);
-             return $user;
-         })
+            new UserBadge($accessToken->getToken(), function () use ($accessToken, $client) {
+                /**
+                 * @var FactoryResourceOwner $factoryUser
+                 */
+                $factoryUser = $client->fetchUserFromToken($accessToken);
+                $user = $this->mergeUserData->merge($factoryUser, $accessToken);
+                return $user;
+            })
         );
     }
 
@@ -96,6 +96,11 @@ class FactoryPortalAuthenticator extends OAuth2Authenticator implements Authenti
     {
         $message = strtr($exception->getMessageKey(), $exception->getMessageData());
         return new Response($message, Response::HTTP_FORBIDDEN);
+    }
+
+    private function isApiCall(Request $request)
+    {
+        return $request->getContentType() === 'jsonld';
     }
 
 }

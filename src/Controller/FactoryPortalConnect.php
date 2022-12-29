@@ -9,8 +9,6 @@ declare(strict_types=1);
 namespace SSO\FpBundle\Controller;
 
 use SSO\FpBundle\Provider\FactoryOauth2ClientProvider;
-use SSO\FpBundle\Repository\UserRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
