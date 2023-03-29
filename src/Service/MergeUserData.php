@@ -70,7 +70,8 @@ class MergeUserData
         $user->setLastname($response['lastname']);
         $user->setFirstname($response['firstname']);
         $user->setRoles($response['roles']);
-        $user->setIsBlockedByFp($response['blockedUser']??false);
+        $user->setIsBlockedByFp($response['blockeduser']??false);
+        $user->setExtras($response['extras']??[]);
     }
 
     private function updateTokens(User $user, AccessToken $accessToken)

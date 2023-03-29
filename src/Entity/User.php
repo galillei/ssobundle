@@ -59,10 +59,17 @@ class User implements UserInterface, EquatableInterface
      */
     private $isBlockedByFp = false;
 
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $extras;
+
     public function getId(): ?int
     {
         return $this->id;
     }
+
+
 
     public function getEmail(): ?string
     {
@@ -211,6 +218,18 @@ class User implements UserInterface, EquatableInterface
     public function setToLogoutUser(bool $logout)
     {
         $this->logoutUser = $logout;
+        return $this;
+    }
+
+    public function getExtras(): ?array
+    {
+        return $this->extras;
+    }
+
+    public function setExtras(array $extras): self
+    {
+        $this->extras = $extras;
+
         return $this;
     }
 
