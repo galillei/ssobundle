@@ -23,6 +23,8 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
+use KnpU\OAuth2ClientBundle\Security\Exception\InvalidStateAuthenticationException;
+
 
 class FactoryPortalAuthenticator extends OAuth2Authenticator implements AuthenticationEntryPointInterface
 {
@@ -94,6 +96,11 @@ class FactoryPortalAuthenticator extends OAuth2Authenticator implements Authenti
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
+        if($exception instanceof InvalidStateAuthenticationException){
+//            another attempt to login
+            $targetUrl = $this->router->generate('app_homepage');
+            return new RedirectResponse($targetUrl);
+        }
         $message = strtr($exception->getMessageKey(), $exception->getMessageData());
         return new Response($message, Response::HTTP_FORBIDDEN);
     }
