@@ -80,8 +80,11 @@ class MergeUserData
         $user->setAccessToken($accessToken->getToken());
     }
 
-    private function saveUser($user)
+    private function saveUser(User $user)
     {
+        $dateTime = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
+        $dateTime = $dateTime->modify('+1 hour');
+        $user->setExpiresIn($dateTime);
         $this->entityManager->persist($user);
         $this->entityManager->flush();
     }

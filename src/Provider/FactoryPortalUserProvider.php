@@ -37,8 +37,16 @@ class FactoryPortalUserProvider implements UserProviderInterface
         $this->mergeUserData = $mergeUserData;
     }
 
+    /**
+     * @param User $user
+     * @return UserInterface 
+     */
     public function refreshUser(UserInterface $user)
     {
+        $expiresIn = $user->getExpiresIn(); 
+        if($expiresIn && $expiresIn > (new \DateTimeImmutable('now', new \DateTimeZone('UTC')))){
+            return $user;
+        }
         $client = $this->clientRegistry->getClient('factory_oauth_client');
 
         /**

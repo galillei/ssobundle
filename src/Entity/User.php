@@ -60,6 +60,11 @@ class User implements UserInterface, EquatableInterface
     private $isBlockedByFp = false;
 
     /**
+     * @ORM\Column(type="datetime_immutable")
+     */
+    private $expiresIn;
+
+    /**
      * @ORM\Column(type="json", nullable=true)
      */
     private $extras;
@@ -229,6 +234,18 @@ class User implements UserInterface, EquatableInterface
     public function setExtras(array $extras): self
     {
         $this->extras = $extras;
+
+        return $this;
+    }
+
+    public function getExpiresIn(): ?\DateTimeImmutable
+    {
+        return $this->expiresIn;
+    }
+
+    public function setExpiresIn(\DateTimeImmutable $expiresIn): self
+    {
+        $this->expiresIn = $expiresIn;
 
         return $this;
     }
