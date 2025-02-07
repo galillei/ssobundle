@@ -1,3 +1,15 @@
-sso_fp:
-  resource: "@SSOFpBundle/Controller"
-  type: annotation
+factoryportal_connect_start:
+  path: '/connect/factoryportal/'
+  controller: 'SSO\FpBundle\Controller\FactoryPortalConnect::connectAction'
+
+factoryportal_connect_check:
+  path: '/connect/factoryportal/check'
+  controller: 'SSO\FpBundle\Controller\FactoryPortalConnect::connectCheckAction'
+
+user_data:
+  path: '/api/user'
+  controller: 'SSO\FpBundle\Controller\SSO\FetchUser::getUserData'
+
+factory_portal_logout:
+  path: '/fp_logout'
+  controller: 'SSO\FpBundle\Controller\SSO\Logout::logoutFromFactoryPortal'

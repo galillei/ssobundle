@@ -2,7 +2,7 @@
 /**
  * @package Vinduesgrossisten
  * @author    artsem.belvg@gmail.com
- * @copyraight Copyright © 2015 - 2022
+ * @copyraight Copyright © 2015 - 2025
  */
 declare(strict_types=1);
 
@@ -56,7 +56,7 @@ class FactoryPortalAuthenticator extends OAuth2Authenticator implements Authenti
         $this->mergeUserData = $mergeUserData;
     }
 
-    public function start(Request $request, AuthenticationException $authException = null)
+    public function start(Request $request, ?AuthenticationException $authException = null) : Response
     {
         if($request->isMethod('POST') || $this->isApiCall($request)){
             return new JsonResponse(['url'=>'/connect/factoryportal/','isRedirect'=>true], Response::HTTP_UNAUTHORIZED);
@@ -107,7 +107,7 @@ class FactoryPortalAuthenticator extends OAuth2Authenticator implements Authenti
 
     private function isApiCall(Request $request)
     {
-        return $request->getContentType() === 'jsonld';
+        return $request->getContentTypeFormat() === 'jsonld';
     }
 
 }

@@ -1,6 +1,6 @@
 {
   "name": "belvg/sso-fpbundle",
-  "version": "1.5.0",
+  "version": "7.2.0",
   "type": "symfony-bundle",
   "description": "Integration with knpuniversity/oauth2-client-bundle to provide services",
   "keywords": ["oauth", "oauth2", "sso"],
@@ -20,10 +20,9 @@
   },
   "require": {
     "knpuniversity/oauth2-client-bundle": "^2.10",
-    "symfony/security-bundle": "^6.0",
+    "symfony/security-bundle": "^7.2",
     "doctrine/doctrine-bundle":"^2.7",
-    "sensio/framework-extra-bundle": "^6.0",
-    "doctrine/orm": "^2.13",
+    "doctrine/orm": "^3.0",
     "doctrine/doctrine-migrations-bundle": "^3.2"
   }
 }

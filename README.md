@@ -49,6 +49,7 @@
             $provider: '@app.factory.provider'
 
 ````
+### Copy file `scr/config/sso_fp.yaml` to `config/routes`
 
 ### Configure env
 ```Env

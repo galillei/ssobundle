@@ -2,7 +2,7 @@
 /**
  * @package Vinduesgrossisten
  * @author    artsem.belvg@gmail.com
- * @copyraight Copyright © 2015 - 2022
+ * @copyraight Copyright © 2015 - 2025
  */
 declare(strict_types=1);
 
@@ -13,12 +13,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class FetchUser extends AbstractController
 {
 
-    /**
-     * @Route("/api/user", name="user_data")
-     */
+    #[Route("/api/user", name:"user_data")]
     public function getUserData() : Response
     {
         /**

@@ -2,7 +2,7 @@
 /**
  * @package Vinduesgrossisten
  * @author    artsem.belvg@gmail.com
- * @copyraight Copyright © 2015 - 2022
+ * @copyraight Copyright © 2015 - 2025
  */
 declare(strict_types=1);
 
@@ -43,7 +43,7 @@ class MergeUserData
      * @param AccessToken $accessToken
      * @return void
      */
-    public function merge(ResourceOwnerInterface $factoryUser, AccessToken $accessToken = null) :UserInterface
+    public function merge(ResourceOwnerInterface $factoryUser, ?AccessToken $accessToken = null) :UserInterface
     {
         $user = $this->userRepository->findUserByEmail($factoryUser->getEmail())
             ?? $this->createUser($factoryUser);

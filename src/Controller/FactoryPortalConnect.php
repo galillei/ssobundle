@@ -2,7 +2,7 @@
 /**
  * @package Vinduesgrossisten
  * @author    artsem.belvg@gmail.com
- * @copyraight Copyright © 2015 - 2022
+ * @copyraight Copyright © 2015 - 2025
  */
 declare(strict_types=1);
 
@@ -18,10 +18,7 @@ use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 
 class FactoryPortalConnect extends AbstractController
 {
-    /**
-     * @return void
-     * @Route("/connect/factoryportal/", name="factoryportal_connect_start")
-     */
+     #[Route("/connect/factoryportal/", name:"factoryportal_connect_start")]
     public function connectAction(ClientRegistry $clientRegistry)
     {
         return $clientRegistry
@@ -29,12 +26,7 @@ class FactoryPortalConnect extends AbstractController
                 ->redirect(['price-robot']);
     }
 
-    /**
-     * @param Request $request
-     * @param ClientRegistry $clientRegistry
-     * @return void
-     * @Route("/connect/factoryportal/check", name="factoryportal_connect_check")
-     */
+    #[Route("/connect/factoryportal/check", name: "factoryportal_connect_check")]
     public function connectCheckAction(Request $request, ClientRegistry $clientRegistry)
     {
         $client = $clientRegistry->getClient('factory_oauth_client');

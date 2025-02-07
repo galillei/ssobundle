@@ -6,75 +6,49 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use SSO\FpBundle\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\EquatableInterface;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\User\UserProviderInterface;
 
-/**
- * @ORM\Entity(repositoryClass=UserRepository::class)
- */
+#[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, EquatableInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: "integer")]
     private $id;
 
     private $logoutUser = false;
 
-    /**
-     * @ORM\Column(type="string", length=180, unique=true)
-     */
+    #[ORM\Column(type: "string", length: 180, unique: true)]
     private $email;
 
-    /**
-     * @ORM\Column(type="json")
-     */
+    #[ORM\Column(type: "json")]
     private $roles = [];
 
-    /**
-     * @ORM\Column(type="string", length=32 )
-     */
+    #[ORM\Column(type: "string", length: 32)]
     private $firstname;
 
-    /**
-     * @ORM\Column(type="string", length=32 )
-     */
+    #[ORM\Column(type: "string", length: 32)]
     private $lastname;
 
-    /**
-     * @ORM\Column(type="string", length=1024)
-     */
+    #[ORM\Column(type: "string", length: 1024)]
     private $accessToken;
 
-    /**
-     * @ORM\Column(type="string", length=1024)
-     */
+    #[ORM\Column(type: "string", length: 1024)]
     private $refreshToken;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
+    #[ORM\Column(type: "boolean")]
     private $isBlockedByFp = false;
 
-    /**
-     * @ORM\Column(type="datetime_immutable")
-     */
+    #[ORM\Column(type: "datetime_immutable")]
     private $expiresIn;
 
-    /**
-     * @ORM\Column(type="json", nullable=true)
-     */
+    #[ORM\Column(type: "json", nullable: true)]
     private $extras;
 
     public function getId(): ?int
     {
         return $this->id;
     }
-
-
 
     public function getEmail(): ?string
     {
@@ -117,46 +91,34 @@ class User implements UserInterface, EquatableInterface
         $this->accessToken = $accessToken;
     }
 
-    public function setRefreshToken( string $refreshToken )
+    public function setRefreshToken(string $refreshToken)
     {
         $this->refreshToken = $refreshToken;
     }
 
-    public function getAccessToken() :?string
+    public function getAccessToken(): ?string
     {
-       return $this->accessToken;
+        return $this->accessToken;
     }
 
-    public function getRefreshToken() :?string
+    public function getRefreshToken(): ?string
     {
-       return $this->refreshToken;
+        return $this->refreshToken;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
     }
 
-    /**
-     * @deprecated since Symfony 5.3, use getUserIdentifier instead
-     */
     public function getUsername(): string
     {
         return (string) $this->email;
     }
 
-    /**
-     * @see UserInterface
-     */
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
@@ -169,53 +131,32 @@ class User implements UserInterface, EquatableInterface
         return $this;
     }
 
-    /**
-     * This method can be removed in Symfony 6.0 - is not needed for apps that do not check user passwords.
-     *
-     * @see PasswordAuthenticatedUserInterface
-     */
     public function getPassword(): ?string
     {
         return null;
     }
 
-    /**
-     * This method can be removed in Symfony 6.0 - is not needed for apps that do not check user passwords.
-     *
-     * @see UserInterface
-     */
     public function getSalt(): ?string
     {
         return null;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
     }
 
-    /**
-     * @return bool
-     */
     public function isBlockedByFp(): bool
     {
         return $this->isBlockedByFp;
     }
 
-    /**
-     * @param bool $isBlockedByFp
-     */
     public function setIsBlockedByFp(bool $isBlockedByFp): self
     {
         $this->isBlockedByFp = $isBlockedByFp;
         return $this;
     }
 
-    public function isEqualTo(UserInterface $user) :bool
+    public function isEqualTo(UserInterface $user): bool
     {
         return $this->isBlockedByFp() === false && $this->logoutUser === false;
     }
@@ -249,5 +190,4 @@ class User implements UserInterface, EquatableInterface
 
         return $this;
     }
-
 }

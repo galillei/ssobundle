@@ -2,7 +2,7 @@
 /**
  * @package Vinduesgrossisten
  * @author    artsem.belvg@gmail.com
- * @copyraight Copyright © 2015 - 2022
+ * @copyraight Copyright © 2015 - 2025
  */
 declare(strict_types=1);
 
@@ -41,7 +41,7 @@ class FactoryPortalUserProvider implements UserProviderInterface
      * @param User $user
      * @return UserInterface 
      */
-    public function refreshUser(UserInterface $user)
+    public function refreshUser(UserInterface $user) : UserInterface
     {
         $expiresIn = $user->getExpiresIn(); 
         if($expiresIn && $expiresIn > (new \DateTimeImmutable('now', new \DateTimeZone('UTC')))){
@@ -68,7 +68,7 @@ class FactoryPortalUserProvider implements UserProviderInterface
         return $refreshedUser;
     }
 
-    public function supportsClass(string $class)
+    public function supportsClass(string $class) :bool
     {
         return $class === User::class;
     }
