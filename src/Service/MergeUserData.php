@@ -70,7 +70,8 @@ class MergeUserData
         $user->setLastname($response['lastname']);
         $user->setFirstname($response['firstname']);
         $user->setRoles($response['roles']);
-        $user->setIsBlockedByFp($response['blockeduser']??false);
+        // Factory Portal sends "blockedUser" (/api/v3/user); "blockeduser" was read before, so the flag never arrived
+        $user->setIsBlockedByFp((bool) ($response['blockedUser'] ?? $response['blockeduser'] ?? false));
         $user->setExtras($response['extras']??[]);
     }
 
