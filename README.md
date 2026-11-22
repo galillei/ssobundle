@@ -1,3 +1,23 @@
+# belvg/sso-fpbundle
+
+Factory Portal SSO for Symfony apps: login through Factory Portal (OAuth2), user data and roles from `/api/v3/user`.
+
+| Bundle | Symfony     | PHP  | Doctrine                                      |
+|--------|-------------|------|-----------------------------------------------|
+| 8.x    | 7.2 – 8.x   | 8.2+ | ORM 3, DoctrineBundle 2.7+ or 3, Migrations 3.2+ or 4 |
+| 7.2    | 7.2 – 7.4   | 8.2+ | ORM 3, DoctrineBundle 2.7+                    |
+
+## 8.0.0
+
+- Symfony 8: routes use `Symfony\Component\Routing\Attribute\Route` (the `Annotation` namespace is gone in 8),
+  services are configured in PHP (`src/config/services.php`) because Symfony 8 can not load XML service files.
+- Works with DoctrineBundle 3 and DoctrineMigrationsBundle 4.
+- Blocked users: the bundle reads `blockedUser`, the key Factory Portal sends. It used to read `blockeduser`,
+  so a user blocked in Factory Portal was never marked as blocked in the app.
+- Removed the `SSO\FpBundle\Security\SSO\UserExperienceAuthenticator` service: its class did not exist.
+
+Upgrading from 7.x: `composer require belvg/sso-fpbundle:^8.0`. The app configuration below stays the same.
+
 # Configuration
 ### Configure routes
 #### Copy file `src/config/sso_fp.yaml` to `config/routes`

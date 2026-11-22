@@ -1,9 +1,13 @@
 {
   "name": "belvg/sso-fpbundle",
-  "version": "7.2.0",
+  "version": "8.0.0",
   "type": "symfony-bundle",
-  "description": "Integration with knpuniversity/oauth2-client-bundle to provide services",
-  "keywords": ["oauth", "oauth2", "sso"],
+  "description": "Factory Portal SSO for Symfony apps (Symfony 7.2 to 8.x), on top of knpuniversity/oauth2-client-bundle",
+  "keywords": [
+    "oauth",
+    "oauth2",
+    "sso"
+  ],
   "license": [
     "OSL-3.0",
     "AFL-3.0"
@@ -19,10 +23,13 @@
     }
   },
   "require": {
-    "knpuniversity/oauth2-client-bundle": "^2.10",
-    "symfony/security-bundle": "^7.2",
-    "doctrine/doctrine-bundle":"^2.7",
+    "php": ">=8.2",
+    "knpuniversity/oauth2-client-bundle": "^2.20",
+    "symfony/framework-bundle": "^7.2 || ^8.0",
+    "symfony/security-bundle": "^7.2 || ^8.0",
+    "symfony/routing": "^7.2 || ^8.0",
+    "doctrine/doctrine-bundle": "^2.7 || ^3.0",
     "doctrine/orm": "^3.0",
-    "doctrine/doctrine-migrations-bundle": "^3.2"
+    "doctrine/doctrine-migrations-bundle": "^3.2 || ^4.0"
   }
 }

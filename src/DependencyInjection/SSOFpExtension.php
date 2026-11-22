@@ -8,22 +8,19 @@ declare(strict_types=1);
 
 namespace  SSO\FpBundle\DependencyInjection;
 
-use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
+use Symfony\Component\DependencyInjection\Extension\Extension;
 
 class SSOFpExtension extends Extension
 {
 
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
-//        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../config'));
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../config'));
-        $loader->load('controller.xml');
-        $loader->load('provider.xml');
+        // PHP config: Symfony 8 removed the XML loader for services
+        $loader = new PhpFileLoader($container, new FileLocator(__DIR__ . '/../config'));
+        $loader->load('services.php');
     }
 
 
